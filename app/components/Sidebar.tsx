@@ -9,7 +9,7 @@ const drawerWidth = 255;
 
 const Sidebar = () => {
   const menuItems = [
-    { text: "Inicio", icon: <HomeIcon />, href: "/login" },
+    { text: "Inicio", icon: <HomeIcon />, href: "/inicio" },
     { text: "Emobot", icon: <SupportAgentIcon />, href: "/emobot" },
     { text: "Configuración", icon: <SettingsIcon />, href: "/settings" },
   ];
@@ -59,6 +59,7 @@ const Sidebar = () => {
             fullWidth
             startIcon={<AccountCircleIcon />}
             //onClick={handleLogout}
+            href="/login"
           >
             Cerrar sesión
           </Button>
