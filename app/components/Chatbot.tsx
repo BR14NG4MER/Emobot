@@ -1,10 +1,26 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import { Box, TextField, Button, Typography, List, ListItem, ListItemText } from "@mui/material";
+import rules from "@/app/emobot/rules.json";
+
+// Función para encontrar una respuesta en las reglas
+const findResponse = (input: string, rules: any): any => {
+  for (const rule of rules) {
+    if (rule.keywords.some((keyword: string) => input.toLowerCase().includes(keyword))) {
+      return rule;
+    }
+  }
+  return null;
+};
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([
+    { sender: "Chatbot", text: "¡Hola! Soy Emobot, ¿cómo puedo ayudarte hoy?" }, // Mensaje inicial
+  ]);
   const [input, setInput] = useState("");
+  const [currentRules, setCurrentRules] = useState(rules); // Reglas actuales para la conversación
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Referencia al contenedor del último mensaje
 
   const handleSendMessage = () => {
     if (input.trim() === "") return;
@@ -12,13 +28,36 @@ const Chatbot = () => {
     // Agregar el mensaje del usuario
     setMessages((prev) => [...prev, { sender: "Usuario", text: input }]);
 
-    // Simular una respuesta del chatbot
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: "Chatbot", text: "¡Hola! ¿Cómo puedo ayudarte?" }]);
-    }, 1000);
+    // Buscar una respuesta en las reglas actuales
+    const matchedRule = findResponse(input, currentRules);
+
+    if (matchedRule) {
+      // Agregar la respuesta del chatbot
+      setMessages((prev) => [...prev, { sender: "Chatbot", text: matchedRule.response }]);
+
+      // Actualizar las reglas actuales si hay pasos siguientes
+      if (matchedRule.nextStep) {
+        setCurrentRules(matchedRule.nextStep);
+      } else {
+        setCurrentRules(rules); // Reiniciar las reglas si no hay más pasos
+      }
+    } else {
+      // Respuesta predeterminada si no se encuentra una coincidencia
+      setMessages((prev) => [
+        ...prev,
+        { sender: "Chatbot", text: "No estoy seguro de cómo responder a eso. ¿Puedes intentarlo de otra manera?" },
+      ]);
+    }
 
     setInput(""); // Limpiar el campo de entrada
   };
+
+  // Desplazar al último mensaje cuando los mensajes cambien
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   return (
     <Box
@@ -35,12 +74,10 @@ const Chatbot = () => {
         boxShadow: 3,
       }}
     >
-      {/* Título del Chatbot */}
       <Typography variant="h6" align="center" gutterBottom>
         Chatbot
       </Typography>
 
-      {/* Mensajes */}
       <Box
         sx={{
           flexGrow: 1,
@@ -71,9 +108,10 @@ const Chatbot = () => {
             </ListItem>
           ))}
         </List>
+        {/* Elemento para desplazar al último mensaje */}
+        <div ref={messagesEndRef} />
       </Box>
 
-      {/* Campo de entrada */}
       <Box sx={{ display: "flex", gap: 1 }}>
         <TextField
           fullWidth
@@ -81,7 +119,7 @@ const Chatbot = () => {
           placeholder="Escribe un mensaje..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
         <Button variant="contained" onClick={handleSendMessage}>
           Enviar

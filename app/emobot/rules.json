@@ -1,0 +1,86 @@
+[
+    {
+      "category": "saludos",
+      "keywords": ["hola", "buenas", "qué tal"],
+      "response": ["¡Hola! ¿En qué puedo ayudarte?", "¡Hola! ¿Cómo estás?", "¡Buenas! ¿Qué necesitas?"],
+      "nextStep": null
+    },
+    {
+      "category": "emocion",
+      "keywords": ["ansiedad", "nervioso", "preocupado"],
+      "response": "Parece que estás sintiendo ansiedad. ¿Te gustaría intentar algunas técnicas para relajarte?",
+      "nextStep": [
+        {
+          "keywords": ["sí", "claro", "por favor"],
+          "response": "Prueba con respiración profunda. ¿Te gustaría saber más sobre cómo respirar correctamente?",
+          "nextStep": [
+            {
+              "keywords": ["sí", "quiero"],
+              "response": "Intenta inhalar lentamente por 4 segundos, mantener durante 7 segundos, y luego exhalar por 8 segundos."
+            },
+            {
+              "keywords": ["no", "gracias"],
+              "response": "Entendido, recuerda que puedes volver a pedirme ayuda cuando lo necesites."
+            }
+          ]
+        },
+        {
+          "keywords": ["no", "gracias"],
+          "response": "Entiendo, si necesitas hablar sobre algo más, siempre estoy aquí."
+        }
+      ]
+    },
+    {
+      "category": "emocion",
+      "keywords": ["estresado", "agotado", "cansado"],
+      "response": "Parece que estás estresado. ¿Quieres que te recomiende algunas técnicas para reducir el estrés?",
+      "nextStep": [
+        {
+          "keywords": ["sí", "claro", "por favor"],
+          "response": "La meditación puede ser muy útil. ¿Te gustaría que te recomiende algunos ejercicios?"
+        },
+        {
+          "keywords": ["no", "gracias"],
+          "response": "Entendido, avísame si necesitas algo más en el futuro."
+        }
+      ]
+    },
+    {
+      "category": "emocion",
+      "keywords": ["deprimido", "triste", "bajo de ánimo"],
+      "response": "Lamento escuchar que te sientes triste o deprimido. ¿Te gustaría hablar más sobre ello?",
+      "nextStep": [
+        {
+          "keywords": ["sí", "claro", "por favor"],
+          "response": "Hablar sobre tus sentimientos puede ser útil. ¿Te gustaría recibir algunos consejos sobre cómo mejorar tu estado de ánimo?",
+          "nextStep": [
+            {
+              "keywords": ["sí", "quiero"],
+              "response": "Puedes intentar hacer una caminata corta o escuchar música que te guste."
+            },
+            {
+              "keywords": ["no", "gracias"],
+              "response": "Entiendo, si alguna vez necesitas hablar, estaré aquí para escucharte."
+            }
+          ]
+        },
+        {
+          "keywords": ["no", "gracias"],
+          "response": "Entiendo, recuerda que estoy aquí si necesitas ayuda."
+        }
+      ]
+    },
+    {
+      "category": "despedidas",
+      "keywords": ["adiós", "nos vemos", "bye", "adios"],
+      "response": "¡Hasta luego! Recuerda que siempre estoy aquí para ayudarte.",
+      "nextStep": null
+    },
+    {
+      "category": "Pregunta",
+      "keywords": ["si", "algo", "un poco"],
+      "response": "Que bueno que te puede ayudar de alguna manera, si necesitas algo puedes decirme como te sientes",
+      "nextStep": null
+    }
+  ]
+  
