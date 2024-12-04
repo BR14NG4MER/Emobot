@@ -5,28 +5,23 @@ import Sidebar from "../components/Sidebar";
 const teamMembers = [
   {
     name: "Brian U. Nava Villagran",
-    role: "Desarrollador Frontend",
-    avatar: "",
+    avatar: "/Brian.jpg",
   },
   {
     name: "Jorge I. Noriega Hernandez",
-    role: "",
-    avatar: "",
+    avatar: "/Jorge.jpg",
   },
   {
     name: "Fidel Montesino González",
-    role: "",
-    avatar: "",
+    avatar: "/Fidel.jpg",
   },
   {
     name: "Alejandra Ortega Hernandez",
-    role: "",
-    avatar: "",
+    avatar: "/Alejandra.jpg",
   },
   {
     name: "Aldo A. Montaño De La Paz",
-    role: "",
-    avatar: "",
+    avatar: "/Aldo.jpg",
   }
 ];
 
@@ -64,7 +59,6 @@ export default function Inicio() {
                     />
                     <Typography variant="h6">{member.name}</Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {member.role}
                     </Typography>
                   </CardContent>
                 </Card>

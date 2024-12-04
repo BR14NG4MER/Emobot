@@ -35,7 +35,7 @@ const Sidebar = () => {
         {/* Logo y Nombre */}
         <Box sx={{ p: 2, display: "flex", alignItems: "center", flexDirection: "column" }}>
           {/* Aquí puedes poner tu logo */}
-          <img src="path_to_logo.png" alt="Logo" style={{ width: "50px", height: "50px", marginBottom: "8px" }} />
+          <img src="/chatbot-logo.png" alt="Logo" style={{ width: "50px", height: "50px", marginBottom: "8px" }} />
           <Typography variant="h6">EMOBOT</Typography>
         </Box>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '@mui/material';
 
 function Login() {
   return (
@@ -31,12 +32,12 @@ function Login() {
           </div>
 
           {/* Botón para iniciar sesión */}
-          <button 
-            type="submit" 
-            className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+          <Button 
+            className="w-full px-4 py-2 text-white bg-blue-500 rounded"
+            href="/inicio"
           >
             Iniciar Sesión
-          </button>
+          </Button>
         </form>
 
         {/* Enlace de recuperación de contraseña */}
